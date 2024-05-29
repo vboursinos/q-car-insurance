@@ -6,7 +6,6 @@ import java.io.IOException;
 
 public class RunQ {
     public static void createInitTable(c con) throws IOException {
-        // Added localTime, continent, region, and avgTemperature columns
         String cityTable = ""
                            + "city:([] id:1+til 10000000; city:10000000#`Istanbul`Moscow`London`StPetersburg`Berlin`Madrid`Rome`Athens`Lisbon; "
                            + "country:10000000#`Turkey`Russia`UK`Russia`Germany`Spain`Italy`Greece`Portugal; pop:10000000#15067724 12615279 9126366 5383890 3750000 3256000 2800000 3100000 300000; "
@@ -16,7 +15,6 @@ public class RunQ {
                            + "avgTemperature:10000000#15.0 20.0 11.0 2.0 1.5 16.0 15.5 18.0 17.0)";
         con.ks(cityTable);
 
-        // create the second table named largeTable2 with aligned data
         String countryTable = "country:([] id:1+til 10000000; capital:10000000#`Istanbul`Moscow`London`StPetersburg`Berlin`Madrid`Rome`Athens`Lisbon; "
                               + "currency:10000000#`Lira`Ruble`Pound`Ruble`Euro`Euro`Euro`Euro`Euro)";
         con.ks(countryTable);
@@ -32,6 +30,17 @@ public class RunQ {
                            + "saleDate:10#2021.01.01 2021.01.02 2021.01.03 2021.01.04 2021.01.05 2021.01.06 2021.01.07 2021.01.08 2021.01.09 2021.01.10; "
                            + "saleAmount:10#300.25 400.75 250.50 600.0 870.99 450.0 560.35 789.0 650.85 900.50)";
         con.ks(saleTable);
+
+        String stock = "stock:([sym:`s#`AAPL`C`FB`MS] \n" +
+                       "    sector:`Tech`Financial`Tech`Financial; \n" +
+                       "    employees:72800 262000 4331 57726)";
+        con.ks(stock);
+
+        String trade = "trade:([] dt:`s#2015.01.01+0 1 2 3 3 4 5 6 6; \n" +
+                       "    sym:`C`C`MS`C`DBK`AAPL`AAPL`MS`MS; \n" +
+                       "    price:10 10.5 260 11 35.6 1010 1020 255 254; \n" +
+                       "    size:10 100 15 200 55 20 300 200 400)";
+        con.ks(trade);
     }
 
     public static void executeScript(String query, c con) throws IOException {

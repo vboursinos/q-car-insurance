@@ -1,0 +1,1 @@
+fbTrades:([] dt:`s#2015.01.01+1 2 4; sym:`FB; size:1000; book:`A`B`A);
