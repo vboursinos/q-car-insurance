@@ -1,6 +1,7 @@
 import ai.turintech.RunQ;
 import com.kx.c;
 import io.github.cdimascio.dotenv.Dotenv;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -107,5 +108,13 @@ public class KdbTest {
         int columnSize = table.y.length;
         System.out.println("Column size: " + columnSize);
         Assertions.assertTrue(columnSize == expectedColumnSize);
+    }
+
+    @AfterAll
+    public static void tearDown() throws IOException, c.KException {
+        // close connection
+        if (con != null) {
+            con.close();
+        }
     }
 }
