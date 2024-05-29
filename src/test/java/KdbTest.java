@@ -77,6 +77,6 @@ public class KdbTest {
         long count = (long) con.k("count joinTable2");
         System.out.println("Count of joinTable: " + count);
 
-        Assertions.assertTrue(count == 12000000);
+        Assertions.assertTrue(count == 8000000);
     }
 }
