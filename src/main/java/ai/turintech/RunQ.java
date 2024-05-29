@@ -24,7 +24,8 @@ public class RunQ {
         String personTable = "person:([] id:1+til 20000000; firstName:20000000#`John`Bill`Karen`Jill`Frank`Laura`Henry`Liam`Emma`Noah; "
                              + "lastName:20000000#`Smith`Johnson`Williams`Jones`Brown`Davis`Miller`Wilson`Moore`Taylor; "
                              + "sales:20000000#300.25 400.75 250.50 600.0 870.99 450.0 560.35 789.0 650.85 900.50; "
-                             + "saleId:20000000#1 2 3 4 5 6 7 8 9 10)";
+                             + "saleId:20000000#1 2 3 4 5 6 7 8 9 10; "
+                             + "age:20000000#30 35 40 45 50 55 60 65 70 75)";
         con.ks(personTable);
 
         String saleTable = "sale:([] id:1+til 10;"
