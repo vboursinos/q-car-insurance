@@ -8,17 +8,17 @@ public class RunQ {
     public static void createInitTable(c con) throws IOException {
         // Added localTime, continent, region, and avgTemperature columns
         String cityTable = ""
-                                   + "city:([] id:1+til 10000000; city:10000000#`Istanbul`Moscow`London`StPetersburg`Berlin`Madrid`Rome`Athens`Lisbon; "
-                                   + "country:10000000#`Turkey`Russia`UK`Russia`Germany`Spain`Italy`Greece`Portugal; pop:10000000#15067724 12615279 9126366 5383890 3750000 3256000 2800000 3100000 300000; "
-                                   + "localTime:10000000#07:00 12:00 07:00 12:00 09:00 10:00 10:00 11:00 11:00; "
-                                   + "continent:10000000#`Asia`Europe`Europe`Europe`Europe`Europe`Europe`Europe`Europe; "
-                                   + "region:10000000#`Marmara`Central`Southeast`Northwest`Northeast`Central`South`Central`LisbonRegion; "
-                                   + "avgTemperature:10000000#15.0 20.0 11.0 2.0 1.5 16.0 15.5 18.0 17.0)";
+                           + "city:([] id:1+til 10000000; city:10000000#`Istanbul`Moscow`London`StPetersburg`Berlin`Madrid`Rome`Athens`Lisbon; "
+                           + "country:10000000#`Turkey`Russia`UK`Russia`Germany`Spain`Italy`Greece`Portugal; pop:10000000#15067724 12615279 9126366 5383890 3750000 3256000 2800000 3100000 300000; "
+                           + "localTime:10000000#07:00 12:00 07:00 12:00 09:00 10:00 10:00 11:00 11:00; "
+                           + "continent:10000000#`Asia`Europe`Europe`Europe`Europe`Europe`Europe`Europe`Europe; "
+                           + "region:10000000#`Marmara`Central`Southeast`Northwest`Northeast`Central`South`Central`LisbonRegion; "
+                           + "avgTemperature:10000000#15.0 20.0 11.0 2.0 1.5 16.0 15.5 18.0 17.0)";
         con.ks(cityTable);
 
         // create the second table named largeTable2 with aligned data
         String countryTable = "country:([] id:1+til 10000000; capital:10000000#`Istanbul`Moscow`London`StPetersburg`Berlin`Madrid`Rome`Athens`Lisbon; "
-                                   + "currency:10000000#`Lira`Ruble`Pound`Ruble`Euro`Euro`Euro`Euro`Euro)";
+                              + "currency:10000000#`Lira`Ruble`Pound`Ruble`Euro`Euro`Euro`Euro`Euro)";
         con.ks(countryTable);
 
         String personTable = "person:([] id:1+til 20000000; firstName:20000000#`John`Bill`Karen`Jill`Frank`Laura`Henry`Liam`Emma`Noah; "
