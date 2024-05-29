@@ -1,0 +1,1 @@
+joinTable:aj[`id;select from (city) where pop > 4000000; `id xkey (country)]
