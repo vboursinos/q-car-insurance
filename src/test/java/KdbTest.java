@@ -31,7 +31,7 @@ public class KdbTest {
 
     @Test
     public void testCode1() throws IOException, c.KException {
-        int expectedColumnSize = 10;
+        int expectedColumnSize = 11;
         int expectedRowCount = 4444445;
 
         Path path = Paths.get("src/main/resources/q/query_1.q");
