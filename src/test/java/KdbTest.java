@@ -58,7 +58,7 @@ public class KdbTest {
 
     @Test
     public void testCode2() throws IOException, c.KException {
-        int expectedColumnSize = 8;
+        int expectedColumnSize = 9;
         int expectedRowCount = 8000000;
 
         Path path = Paths.get("src/main/resources/q/query_2.q");
