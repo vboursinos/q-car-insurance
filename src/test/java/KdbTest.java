@@ -1,4 +1,5 @@
 import ai.turintech.RunQ;
+import ai.turintech.RunQFromMethod;
 import com.kx.c;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.AfterAll;
@@ -25,7 +26,6 @@ public class KdbTest {
 
         con = new c(kdbHost, Integer.parseInt(kdbPort));
 
-        // Create init tables
         RunQ.createInitTable(con);
     }
 
@@ -45,7 +45,6 @@ public class KdbTest {
             System.out.println();
         }
 
-        // Find the count of the joined table
         long count = (long) con.k("count joinTable");
         System.out.println("Count of joinTable: " + count);
 
@@ -72,7 +71,6 @@ public class KdbTest {
             System.out.println();
         }
 
-        // Find the count of the joined table
         long count = (long) con.k("count joinTable2");
         System.out.println("Count of joinTable: " + count);
 
@@ -99,7 +97,6 @@ public class KdbTest {
             System.out.println();
         }
 
-        // Find the count of the joined table
         long count = (long) con.k("count fbTrades");
         System.out.println("Count of fbTrades: " + count);
 
@@ -126,7 +123,6 @@ public class KdbTest {
             System.out.println();
         }
 
-        // Find the count of the joined table
         long count = (long) con.k("count joinTable");
         System.out.println("Count of joinTable: " + count);
 
@@ -137,6 +133,111 @@ public class KdbTest {
         Assertions.assertTrue(columnSize == expectedColumnSize);
     }
 
+    @Test
+    public void testCode1FromMethod() throws c.KException, IOException {
+        int expectedColumnSize = 11;
+        int expectedRowCount = 4444445;
+
+        try {
+            RunQFromMethod.joinCityCountry(con);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        c.Flip table;
+
+        table = (c.Flip) con.k("10#joinTable");
+
+        long count = (long) con.k("count joinTable");
+        System.out.println("Count of joinTable: " + count);
+
+        Assertions.assertTrue(count == expectedRowCount);
+
+        int columnSize = table.y.length;
+        System.out.println("Column size: " + columnSize);
+        Assertions.assertTrue(columnSize == expectedColumnSize);
+    }
+
+    @Test
+    public void testCode2FromMethod() throws c.KException, IOException {
+        int expectedColumnSize = 9;
+        int expectedRowCount = 8000000;
+
+        try {
+            RunQFromMethod.joinPersonSale(con);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        c.Flip table = null;
+
+        table = (c.Flip) con.k("10#joinTable2");
+
+        long count = (long) con.k("count joinTable2");
+        System.out.println("Count of joinTable2: " + count);
+
+        Assertions.assertTrue(count == expectedRowCount);
+
+        int columnSize = table.y.length;
+        System.out.println("Column size: " + columnSize);
+        Assertions.assertTrue(columnSize == expectedColumnSize);
+    }
+
+    @Test
+    public void testCode3FromMethod() throws c.KException, IOException {
+        int expectedColumnSize = 7;
+        int expectedRowCount = 1;
+
+        try {
+            RunQFromMethod.joinTradeStock(con);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        c.Flip table;
+
+        table = (c.Flip) con.k("10#joinTable3");
+
+        long count = (long) con.k("count joinTable3");
+        System.out.println("Count of joinTable3: " + count);
+
+        Assertions.assertTrue(count == expectedRowCount);
+
+        int columnSize = table.y.length;
+        System.out.println("Column size: " + columnSize);
+        Assertions.assertTrue(columnSize == expectedColumnSize);
+    }
+
+    @Test
+    public void testCode4FromMethod() throws c.KException, IOException {
+        int expectedColumnSize = 10;
+        int expectedRowCount = 4444445;
+
+        try {
+            RunQFromMethod.joinCityCountry2(con);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        c.Flip table;
+
+        table = (c.Flip) con.k("10#joinTable4");
+        for (int i = 0; i < c.n(table.y[0]); i++) {
+            for (int j = 0; j < table.y.length; j++) {
+                System.out.print(c.at(table.y[j], i) + " ");
+            }
+            System.out.println();
+        }
+
+        long count = (long) con.k("count joinTable4");
+        System.out.println("Count of joinTable4: " + count);
+
+        Assertions.assertTrue(count == expectedRowCount);
+
+        int columnSize = table.y.length;
+        System.out.println("Column size: " + columnSize);
+        Assertions.assertTrue(columnSize == expectedColumnSize);
+    }
 
     @AfterAll
     public static void tearDown() throws IOException, c.KException {

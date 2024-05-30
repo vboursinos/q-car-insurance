@@ -1,11 +1,11 @@
 joinTable2: aj[`id;
     select from
-        update id: id, sales: sales + 0, dummy: sales * age from //Added unnecessary computation
+        update id: id, sales: sales + 0, dummy: sales * age from
             (select from
-                update age: age + 0 from //Another unnecessary operation
+                update age: age + 0 from
                     (select from
-                        (aj[`id; //Unnecessary joint
-                            select from person where sales > 502, //Altered sales figure
+                        (aj[`id;
+                            select from person where sales > 502,
                             age > 52; `id xkey (sale)
                         ])
                     ) where sales > 500, age > 50
