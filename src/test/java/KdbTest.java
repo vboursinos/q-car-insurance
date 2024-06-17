@@ -18,13 +18,15 @@ import java.util.List;
 
 public class KdbTest {
     private static c con = null;
+    private static String kdbHost;
+    private static String kdbPort;
 
     @BeforeAll
     public static void setUp() throws IOException, c.KException {
         Dotenv dotenv = Dotenv.configure().load();
 
-        String kdbHost = dotenv.get("KDB_HOST");
-        String kdbPort = dotenv.get("KDB_PORT");
+        kdbHost = dotenv.get("KDB_HOST");
+        kdbPort = dotenv.get("KDB_PORT");
 
         con = new c(kdbHost, Integer.parseInt(kdbPort));
 
@@ -162,6 +164,14 @@ public class KdbTest {
     }
 
     @Test
+    public void testCode5() throws IOException, c.KException {
+
+        Path path = Paths.get("src/main/resources/q/query_5.q");
+        String query = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
+        RunQ.executeScript(query, con);
+    }
+
+    @Test
     public void testCode1FromMethod() throws c.KException, IOException {
         int expectedColumnSize = 11;
         int expectedRowCount = 4444445;
@@ -259,7 +269,6 @@ public class KdbTest {
         int expectedColumnSize = 10;
         int expectedRowCount = 4444445;
         List<String> columnNames = Arrays.asList("id", "city", "country", "pop", "localTime", "continent", "region", "avgTemperature", "capital", "currency");
-
 
         try {
             RunQFromMethod.joinCityCountry2(con);
