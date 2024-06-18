@@ -38,3 +38,20 @@ do[m;
      do[z; show "x = ", string xVal, "; y = ", string yVal, "; z = ", string .z.i];
    ];
  ];
+
+
+ s:20;
+ t:6;
+ u:5;
+ v:2;
+
+ do[s;
+   sVal:.z.i;
+   do[t;
+     tVal:.z.i;
+     do[u;
+       uVal:.z.i;
+       do[v; show "s = ", string sVal, "; t = ", string tVal, "; u = ", string uVal, "; v = ", string .z.i];
+     ];
+   ];
+ ];
