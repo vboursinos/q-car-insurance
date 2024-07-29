@@ -1,0 +1,150 @@
+table name: city
+
+columns:
+id | city | country | pop | local_time | continent | region | avgTemperature
+
+data:
+1	Istanbul	Turkey	15067724	07:00	Asia	Marmara	15.0
+2	Moscow	Russia	12615279	12:00	Europe	Central	20.0
+3	London	UK	9126366	07:00	Europe	Southeast	11.0
+4	StPetersburg	Russia	5383890	12:00	Europe	Northwest	2.0
+5	Berlin	Germany	3750000	09:00	Europe	Northeast	1.5
+6	Madrid	Spain	3256000	10:00	Europe	Central	16.0
+7	Rome	Italy	2800000	10:00	Europe	South	15.5
+8	Athens	Greece	3100000	11:00	Europe	Central	18.0
+9	Lisbon	Portugal	300000	11:00	Europe	LisbonRegion	17.0
+-----------------------------------------------------------------------------------
+
+table name: country
+
+columns:
+id | capital | currency
+
+data:
+1	Istanbul	Lira
+2	Moscow	Ruble
+3	London	Pound
+4	StPetersburg	Ruble
+5	Berlin	Euro
+6	Madrid	Euro
+7	Rome	Euro
+8	Athens	Euro
+9	Lisbon	Euro
+-----------------------------------------------------------------------------------
+
+table name: person
+
+columns:
+id | first_name | last_name | sales | saleId | age
+
+data:
+1	John	Smith	300.25	1	30
+2	Bill	Johnson	400.75	2	35
+3	Karen	Williams	250.5	3	40
+4	Jill	Jones	600.0	4	45
+5	Frank	Brown	870.99	5	50
+6	Laura	Davis	450.0	6	55
+7	Henry	Miller	560.35	7	60
+8	Liam	Wilson	789.0	8	65
+9	Emma	Moore	650.85	9	70
+10	Noah	Taylor	900.5	10	75
+
+-----------------------------------------------------------------------------------
+
+table name: sale
+
+columns:
+id | sale_date | sale_amount
+
+data:
+1	2021-01-01	300.25
+2	2021-01-02	400.75
+3	2021-01-03	250.5
+4	2021-01-04	600.0
+5	2021-01-05	870.99
+6	2021-01-06	450.0
+7	2021-01-07	560.35
+8	2021-01-08	789.0
+9	2021-01-09	650.85
+10	2021-01-10	900.5
+
+-----------------------------------------------------------------------------------
+
+table name: stock
+
+columns:
+sym | sector | employees
+
+data:
+
+AAPL	Tech	72800
+C	Financial	262000
+FB	Tech	4331
+MS	Financial	57726
+
+
+-----------------------------------------------------------------------------------
+
+table name: trade
+
+columns:
+dt | sym | price | size
+
+data:
+
+2015-01-01	C	10.0	10
+2015-01-02	C	10.5	100
+2015-01-03	MS	260.0	15
+2015-01-04	C	11.0	200
+2015-01-04	DBK	35.6	55
+2015-01-05	AAPL	1010.0	20
+2015-01-06	AAPL	1020.0	300
+2015-01-07	MS	255.0	200
+2015-01-07	MS	254.0	400
+
+-----------------------------------------------------------------------------------
+
+file: src/main/resources/q/query_1.q
+table name: city_details
+
+columns:
+id | city | country | pop | local_time | continent | region | avgTemperature | city | currency
+
+data:
+1 Istanbul Turkey 15067924 07:00 Asia Marmara 15.0 15068024 Istanbul Lira
+2 Moscow Russia 12615479 12:00 Europe Central 20.0 12615579 Moscow Ruble
+3 London UK 9126566 07:00 Europe Southeast 11.0 9126666 London Pound
+4 StPetersburg Russia 5384090 12:00 Europe Northwest 2.0 5384190 StPetersburg Ruble
+
+-----------------------------------------------------------------------------------
+
+file: src/main/resources/q/query_2.q
+table name: sales_per_person
+
+columns:
+id | first_name | last_name | sales | saleId | age | sale_date | sale_amount
+
+data:
+7 Henry Miller 560.35 7 60 2021-01-07 560.35 33621.0
+8 Liam Wilson 789.0 8 65 2021-01-08 789.0 51285.0
+9 Emma Moore 650.85 9 70 2021-01-09 650.85 45559.5
+10 Noah Taylor 900.5 10 75 2021-01-10 900.5 67537.5
+17 Henry Miller 560.35 7 60 2021-01-10 900.5 33621.0
+18 Liam Wilson 789.0 8 65 2021-01-10 900.5 51285.0
+19 Emma Moore 650.85 9 70 2021-01-10 900.5 45559.5
+
+-----------------------------------------------------------------------------------
+
+file: src/main/resources/q/query_3.q
+table name: fbTrades
+
+columns:
+dt | sym | size | book
+
+2015-01-02 FB 1000 A
+2015-01-03 FB 1000 B
+2015-01-05 FB 1000 A
+2015-01-02 FB 1000 A
+2015-01-03 FB 1000 B
+
+-----------------------------------------------------------------------------------
