@@ -1,7 +1,7 @@
 // createCustomerTable.q
 
 // Define the number of rows
-numRows: 10000000;
+numRows: 1000000;
 
 // Define the lists for each column
 names: `Matthew`Nick`Andrew`Paul`George`Will`Maria`Antony`Bob;

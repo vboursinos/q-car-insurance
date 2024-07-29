@@ -22,18 +22,10 @@ public class CustomerManager {
     private static final String SCRIPT_PATH = "src/main/resources/scripts/createCustomerTable.q";
 
 
-    String cityTable = ""
-                       + "city2:([] id:1+til 10000000; city:10000000#`Istanbul`Moscow`London`StPetersburg`Berlin`Madrid`Rome`Athens`Lisbon; "
-                       + "country:10000000#`Turkey`Russia`UK`Russia`Germany`Spain`Italy`Greece`Portugal; pop:10000000#15067724 12615279 9126366 5383890 3750000 3256000 2800000 3100000 300000; "
-                       + "localTime:10000000#07:00 12:00 07:00 12:00 09:00 10:00 10:00 11:00 11:00; "
-                       + "continent:10000000#`Asia`Europe`Europe`Europe`Europe`Europe`Europe`Europe`Europe; "
-                       + "region:10000000#`Marmara`Central`Southeast`Northwest`Northeast`Central`South`Central`LisbonRegion; "
-                       + "avgTemperature:10000000#15.0 20.0 11.0 2.0 1.5 16.0 15.5 18.0 17.0)";
-
     public static void main(String[] args) {
         CustomerManager manager = new CustomerManager();
         manager.initializeDatabase();
-//        manager.printAllCustomers();
+        manager.printAllCustomers();
     }
 
     private void initializeDatabase() {
@@ -55,21 +47,40 @@ public class CustomerManager {
             if (result instanceof c.Flip) {
                 c.Flip table = (c.Flip) result;
                 String[] columnNames = table.x;
+                logger.info("Printing customer data...");
+                for (String columnName : columnNames) {
+                    logger.info(columnName);
+                }
                 Object[] columns = table.y;
 
-                // Assuming columns are of type Object[] where each object is a primitive array
+                // Handling the columns based on expected types
                 long[] ids = (long[]) columns[0];
                 Object[] names = (Object[]) columns[1];
-                long[] ages = (long[]) columns[2];
-                Object[] emails = (Object[]) columns[3];
+                Object[] surnames = (Object[]) columns[2];
+                Object[] countries = (Object[]) columns[3];
+                long[] pops = (long[]) columns[4];
+                Object[] localTimes = (Object[]) columns[5];
+                Object[] telNums = (Object[]) columns[6];
+                Object[] regions = (Object[]) columns[7];
+//                int[] ages = (int[]) columns[8];
 
                 for (int i = 0; i < ids.length; i++) {
-                    int id = (int) ids[i]; // cast long to int
-                    String name = names[i].toString(); // symbols are converted to String
-                    int age = (int) ages[i]; // cast long to int
-                    String email = emails[i].toString(); // symbols are converted to String
-
-                    logger.info(String.format("ID: %d, Name: %s, Age: %d, Email: %s", id, name, age, email));
+                    int id = (int) ids[i];
+                    String name = names[i].toString();
+                    String surname = surnames[i].toString();
+                    String country = countries[i].toString();
+                    long pop = pops[i];
+                    String localTime = localTimes[i].toString();
+                    String telNum = telNums[i].toString();
+                    String region = regions[i].toString();
+//                    int age = ages[i];
+                    if (telNum.equals("null")) {
+                        telNum = "N/A";
+                    }
+                    if (region.startsWith("S")) {
+                        logger.info(String.format("ID: %d, Name: %s, Surname: %s, Country: %s, Population: %d, Local Time: %s, Tel Num: %s, Region: %s",
+                                id, name, surname, country, pop, localTime, telNum, region));
+                    }
                 }
             }
         } catch (Exception e) {
