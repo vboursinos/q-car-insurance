@@ -60,12 +60,12 @@ public class ProductManagerImpl implements ProductManager{
                 double[] engineSizes = (double[]) columns[3];
 
                 for (int i = 0; i < ids.length; i++) {
-                    int id = (int) ids[i];
+                    long product_id = ids[i];
                     String constructor = constructors[i].toString();
                     long price = prices[i];
                     double engineSize = engineSizes[i];
                     logger.info(String.format("ID: %d, Constructor: %s, Price: %d, Engine Size: %f",
-                            id, constructor, price, engineSize));
+                            product_id, constructor, price, engineSize));
                 }
             }
         } catch (Exception e) {
