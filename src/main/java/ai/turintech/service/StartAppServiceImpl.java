@@ -4,6 +4,7 @@ import ai.turintech.database.CustomerManager;
 import ai.turintech.database.ProductManager;
 import ai.turintech.reports.CitroenCustomer;
 import ai.turintech.reports.ProductDetailsPerCustomer;
+import ai.turintech.reports.RenaultCustomer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,10 @@ public class StartAppServiceImpl implements StartAppService{
     private ProductDetailsPerCustomer productDetailsPerCustomer;
     @Autowired
     private CitroenCustomer citroenCustomer;
+
+    @Autowired
+    private RenaultCustomer renaultCustomer;
+
     private static final Logger logger = Logger.getLogger(StartAppServiceImpl.class.getName());
 
 
@@ -32,6 +37,8 @@ public class StartAppServiceImpl implements StartAppService{
         productDetailsPerCustomer.createReport();
         citroenCustomer.createModelReport();
         citroenCustomer.createModelYoungCustomerReport();
+        renaultCustomer.createModelReport();
+        renaultCustomer.createModelYoungCustomerReport();
     }
 
 }

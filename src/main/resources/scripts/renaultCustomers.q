@@ -1,0 +1,1 @@
+renault_customers: select from (customers lj `product_id xkey product) where constructor = `Renault

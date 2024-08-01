@@ -1,4 +1,3 @@
-// Ford customers aged 30 or younger
 young_citroen_customers: select from citroen_customers where age <= 30
 
 /// Ford customers with cars priced over 50000
