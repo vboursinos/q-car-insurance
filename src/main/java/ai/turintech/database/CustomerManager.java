@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public interface CustomerManager {
-    public void main();
+    public void createTable();
     public void initializeDatabase();
     public void printAllCustomers();
 }

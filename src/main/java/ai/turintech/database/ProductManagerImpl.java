@@ -12,20 +12,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Component
-public class CustomerManagerImpl implements CustomerManager{
+public class ProductManagerImpl implements ProductManager{
 
     @Autowired
     private ScriptExecutor scriptExecutor;
-    private static final Logger logger = Logger.getLogger(CustomerManagerImpl.class.getName());
+    private static final Logger logger = Logger.getLogger(ProductManagerImpl.class.getName());
     private static final Dotenv dotenv = Dotenv.load();
     private static final String kdbHost = dotenv.get("KDB_HOST");
     private static final String kdbPort = dotenv.get("KDB_PORT");
-    private static final String SCRIPT_PATH = "src/main/resources/scripts/createCustomerTable.q";
+    private static final String SCRIPT_PATH = "src/main/resources/scripts/createProductTable.q";
 
 
     public void createTable() {
         initializeDatabase();
-        printAllCustomers();
+        printAllProducts();
     }
 
     public void initializeDatabase() {
@@ -38,11 +38,11 @@ public class CustomerManagerImpl implements CustomerManager{
         }
     }
 
-    public void printAllCustomers() {
+    public void printAllProducts() {
         c con = null;
         try {
             con = new c(kdbHost, Integer.parseInt(kdbPort));
-            Object result = con.k("select from customers");
+            Object result = con.k("select from product");
 
             if (result instanceof c.Flip) {
                 c.Flip table = (c.Flip) result;
@@ -55,32 +55,17 @@ public class CustomerManagerImpl implements CustomerManager{
 
                 // Handling the columns based on expected types
                 long[] ids = (long[]) columns[0];
-                Object[] names = (Object[]) columns[1];
-                Object[] surnames = (Object[]) columns[2];
-                Object[] countries = (Object[]) columns[3];
-                long[] ages = (long[]) columns[4];
-                Object[] localTimes = (Object[]) columns[5];
-                Object[] telNums = (Object[]) columns[6];
-                Object[] regions = (Object[]) columns[7];
-                long[] productIds = (long[]) columns[8];
+                Object[] constructors = (Object[]) columns[1];
+                long[] prices = (long[]) columns[2];
+                double[] engineSizes = (double[]) columns[3];
 
                 for (int i = 0; i < ids.length; i++) {
                     int id = (int) ids[i];
-                    String name = names[i].toString();
-                    String surname = surnames[i].toString();
-                    String country = countries[i].toString();
-                    long age = ages[i];
-                    String localTime = localTimes[i].toString();
-                    String telNum = telNums[i].toString();
-                    String region = regions[i].toString();
-                    long productId = productIds[i];
-                    if (telNum.equals("null")) {
-                        telNum = "N/A";
-                    }
-                    if (region.startsWith("S")) {
-                        logger.info(String.format("ID: %d, Name: %s, Surname: %s, Country: %s, Age: %d, Local Time: %s, Tel Num: %s, Region: %s, Product ID: %d",
-                                id, name, surname, country, age, localTime, telNum, region, productId));
-                    }
+                    String constructor = constructors[i].toString();
+                    long price = prices[i];
+                    double engineSize = engineSizes[i];
+                    logger.info(String.format("ID: %d, Constructor: %s, Price: %d, Engine Size: %f",
+                            id, constructor, price, engineSize));
                 }
             }
         } catch (Exception e) {

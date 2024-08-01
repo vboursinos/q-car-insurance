@@ -3,6 +3,8 @@ package ai.turintech;
 import ai.turintech.configuration.PackageScanningConfig;
 import ai.turintech.database.CustomerManager;
 import ai.turintech.database.CustomerManagerImpl;
+import ai.turintech.service.StartAppService;
+import ai.turintech.service.StartAppServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -23,9 +25,9 @@ public class QApplication {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(QApplication.class);
         ConfigurableApplicationContext context = app.run(args);
-        CustomerManager customerManager =
-                context.getBean(CustomerManagerImpl.class);
-        customerManager.main();
+        StartAppService startAppService =
+                context.getBean(StartAppServiceImpl.class);
+        startAppService.startApp();
         context.close();
     }
 }
