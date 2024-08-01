@@ -84,4 +84,8 @@ public class RenaultCustomerImpl implements RenaultCustomer {
             logger.log(Level.SEVERE, "Failed to initialize the database", e);
         }
     }
+
+    public void createModelAvgPriceReport(){
+        logger.info("Not implemented...");
+    }
 }

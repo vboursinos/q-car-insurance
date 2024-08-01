@@ -38,6 +38,7 @@ public class StartAppServiceImpl implements StartAppService{
         for (ModelCustomer modelCustomer : modelCustomers) {
             modelCustomer.createModelReport();
             modelCustomer.createModelYoungCustomerReport();
+            modelCustomer.createModelAvgPriceReport();
         }
     }
 

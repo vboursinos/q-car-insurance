@@ -22,6 +22,7 @@ public class CitroenCustomerImpl implements CitroenCustomer {
     private static final String kdbPort = dotenv.get("KDB_PORT");
     private static final String CUSTOMERS_SCRIPT_PATH = "src/main/resources/scripts/citroenCustomers.q";
     private static final String YOUNG_CUSTOMERS_SCRIPT_PATH = "src/main/resources/scripts/youngCitroenCustomers.q";
+    private static final String AVG_PRICE_SCRIPT_PATH = "src/main/resources/scripts/averagePricePerCountryCitroen.q";
 
     public void createModelReport() {
         try {
@@ -80,6 +81,30 @@ public class CitroenCustomerImpl implements CitroenCustomer {
                 }
             }
             logger.info("Young Citroen Customer table created successfully.");
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Failed to initialize the database", e);
+        }
+    }
+    public void createModelAvgPriceReport() {
+        logger.info("Creating average price report for Citroen customers...");
+        try {
+            String qScript = new String(Files.readAllBytes(Paths.get(AVG_PRICE_SCRIPT_PATH)));
+            scriptExecutor.executeQScript(qScript, kdbHost, kdbPort);
+            Object result = scriptExecutor.executeQScriptWithReturn("select from complicated_avg_price_by_country", kdbHost, kdbPort);
+            if (result instanceof c.Flip) {
+                c.Flip table = (c.Flip) result;
+                String[] columnNames = table.x;
+                logger.info("Printing average price data...");
+                for (String columnName : columnNames) {
+                    logger.info(columnName);
+                }
+                Object[] columns = table.y;
+                long[] prices = (long[]) columns[0];
+                for (long price : prices) {
+                    logger.info(String.format("Price: %d", price));
+                }
+            }
+            logger.info("Average price report for Citroen customers created successfully.");
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Failed to initialize the database", e);
         }
