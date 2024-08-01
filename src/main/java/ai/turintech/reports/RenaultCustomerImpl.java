@@ -39,7 +39,7 @@ public class RenaultCustomerImpl implements RenaultCustomer {
         long[] ids = (long[]) columns[0];
         Object[] names = (Object[]) columns[1];
         Object[] surnames = (Object[]) columns[2];
-        for (int i = 0; i < ids.length; i++) {
+        for (int i = 0; i < 100; i++) {
           int id = (int) ids[i];
           String name = names[i].toString();
           String surname = surnames[i].toString();
@@ -73,7 +73,7 @@ public class RenaultCustomerImpl implements RenaultCustomer {
         Object[] names = (Object[]) columns[1];
         Object[] surnames = (Object[]) columns[2];
         long[] ages = (long[]) columns[4];
-        for (int i = 0; i < ids.length; i++) {
+        for (int i = 0; i < ids.length / 10; i++) {
           int id = (int) ids[i];
           String name = names[i].toString();
           String surname = surnames[i].toString();

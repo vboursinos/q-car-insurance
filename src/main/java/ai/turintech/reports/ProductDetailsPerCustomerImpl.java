@@ -18,7 +18,7 @@ public class ProductDetailsPerCustomerImpl implements ProductDetailsPerCustomer 
   private static final Dotenv dotenv = Dotenv.load();
   private static final String kdbHost = dotenv.get("KDB_HOST");
   private static final String kdbPort = dotenv.get("KDB_PORT");
-  private static final String SCRIPT_PATH = "q/scripts/productDetailsPerCustomer.q";
+  private static final String SCRIPT_PATH = "q/productDetailsPerCustomer.q";
 
   public void createReport() {
     try {

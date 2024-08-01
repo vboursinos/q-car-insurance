@@ -1,7 +1,5 @@
 package ai.turintech.database;
 
-
-
 public interface CustomerManager {
   public void createTable();
 
