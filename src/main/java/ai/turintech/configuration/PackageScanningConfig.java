@@ -9,11 +9,10 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(
-        basePackageClasses = {
-                DatabasePackage.class,
-                ServicePackage.class,
-                ExecutorPackage.class,
-                ReportsPackage.class
-        })
-public class PackageScanningConfig {
-}
+    basePackageClasses = {
+      DatabasePackage.class,
+      ServicePackage.class,
+      ExecutorPackage.class,
+      ReportsPackage.class
+    })
+public class PackageScanningConfig {}

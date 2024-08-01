@@ -1,4 +1,3 @@
 package ai.turintech.service;
 
-public interface ServicePackage {
-}
+public interface ServicePackage {}

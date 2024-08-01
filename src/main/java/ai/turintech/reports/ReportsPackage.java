@@ -1,4 +1,3 @@
 package ai.turintech.reports;
 
-public interface ReportsPackage {
-}
+public interface ReportsPackage {}

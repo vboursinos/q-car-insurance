@@ -1,8 +1,9 @@
 package ai.turintech.reports;
 
 public interface ModelCustomer {
-    public void createModelReport();
-    public void createModelYoungCustomerReport();
+  public void createModelReport();
 
-    public void createModelAvgPriceReport();
+  public void createModelYoungCustomerReport();
+
+  public void createModelAvgPriceReport();
 }

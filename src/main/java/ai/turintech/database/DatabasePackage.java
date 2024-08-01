@@ -1,4 +1,3 @@
 package ai.turintech.database;
 
-public interface DatabasePackage {
-}
+public interface DatabasePackage {}

@@ -1,4 +1,3 @@
 package ai.turintech.reports;
 
-public interface RenaultCustomer extends ModelCustomer{
-}
+public interface RenaultCustomer extends ModelCustomer {}
