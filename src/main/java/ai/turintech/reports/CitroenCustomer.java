@@ -1,5 +1,6 @@
 package ai.turintech.reports;
 
 public interface CitroenCustomer {
-    public void createReport();
+    public void createModelReport();
+    public void createModelYoungCustomerReport();
 }

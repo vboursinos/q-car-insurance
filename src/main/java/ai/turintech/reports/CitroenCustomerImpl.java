@@ -1,6 +1,7 @@
 package ai.turintech.reports;
 
 import ai.turintech.executor.ScriptExecutor;
+import com.kx.c;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,13 +20,66 @@ public class CitroenCustomerImpl implements CitroenCustomer {
     private static final Dotenv dotenv = Dotenv.load();
     private static final String kdbHost = dotenv.get("KDB_HOST");
     private static final String kdbPort = dotenv.get("KDB_PORT");
-    private static final String SCRIPT_PATH = "src/main/resources/scripts/citroenCustomers.q";
+    private static final String CUSTOMERS_SCRIPT_PATH = "src/main/resources/scripts/citroenCustomers.q";
+    private static final String YOUNG_CUSTOMERS_SCRIPT_PATH = "src/main/resources/scripts/youngCitroenCustomers.q";
 
-    public void createReport() {
+    public void createModelReport() {
         try {
-            String qScript = new String(Files.readAllBytes(Paths.get(SCRIPT_PATH)));
+            String qScript = new String(Files.readAllBytes(Paths.get(CUSTOMERS_SCRIPT_PATH)));
             scriptExecutor.executeQScript(qScript, kdbHost, kdbPort);
-            logger.info("Customer Product join table created successfully.");
+            Object result = scriptExecutor.executeQScriptWithReturn("select from citroen_customers", kdbHost, kdbPort);
+            if (result instanceof c.Flip) {
+                c.Flip table = (c.Flip) result;
+                String[] columnNames = table.x;
+                logger.info("Printing citroen data...");
+                for (String columnName : columnNames) {
+                    logger.info(columnName);
+                }
+                Object[] columns = table.y;
+                long[] ids = (long[]) columns[0];
+                Object[] names = (Object[]) columns[1];
+                Object[] surnames = (Object[]) columns[2];
+                for (int i = 0; i < ids.length; i++) {
+                    int id = (int) ids[i];
+                    String name = names[i].toString();
+                    String surname = surnames[i].toString();
+                    if (surname.startsWith("B")) {
+                        logger.info(String.format("ID: %d, Name: %s", id, name));
+                    }
+                }
+            }
+            logger.info("Citroen Customer table created successfully.");
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Failed to initialize the database", e);
+        }
+    }
+
+    public void createModelYoungCustomerReport() {
+        try {
+            String qScript = new String(Files.readAllBytes(Paths.get(YOUNG_CUSTOMERS_SCRIPT_PATH)));
+            scriptExecutor.executeQScript(qScript, kdbHost, kdbPort);
+            Object result = scriptExecutor.executeQScriptWithReturn("select from young_citroen_customers", kdbHost, kdbPort);
+            if (result instanceof c.Flip) {
+                c.Flip table = (c.Flip) result;
+                String[] columnNames = table.x;
+                logger.info("Printing young customer citroen data...");
+                for (String columnName : columnNames) {
+                    logger.info(columnName);
+                }
+                Object[] columns = table.y;
+                long[] ids = (long[]) columns[0];
+                Object[] names = (Object[]) columns[1];
+                Object[] surnames = (Object[]) columns[2];
+                long[] ages = (long[]) columns[4];
+                for (int i = 0; i < ids.length; i++) {
+                    int id = (int) ids[i];
+                    String name = names[i].toString();
+                    String surname = surnames[i].toString();
+                    long age = ages[i];
+                    logger.info(String.format("ID: %d, Name: %s, Surname: %s, Age: %d", id, name, surname, age));
+                }
+            }
+            logger.info("Young Citroen Customer table created successfully.");
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Failed to initialize the database", e);
         }

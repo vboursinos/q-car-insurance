@@ -30,8 +30,8 @@ public class StartAppServiceImpl implements StartAppService{
         customerManager.createTable();
         productManager.createTable();
         productDetailsPerCustomer.createReport();
-        citroenCustomer.createReport();
-
+        citroenCustomer.createModelReport();
+        citroenCustomer.createModelYoungCustomerReport();
     }
 
 }
