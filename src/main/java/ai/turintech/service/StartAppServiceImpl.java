@@ -3,11 +3,13 @@ package ai.turintech.service;
 import ai.turintech.database.CustomerManager;
 import ai.turintech.database.ProductManager;
 import ai.turintech.reports.CitroenCustomer;
+import ai.turintech.reports.ModelCustomer;
 import ai.turintech.reports.ProductDetailsPerCustomer;
 import ai.turintech.reports.RenaultCustomer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @Service
@@ -21,11 +23,9 @@ public class StartAppServiceImpl implements StartAppService{
 
     @Autowired
     private ProductDetailsPerCustomer productDetailsPerCustomer;
-    @Autowired
-    private CitroenCustomer citroenCustomer;
 
     @Autowired
-    private RenaultCustomer renaultCustomer;
+    private List<ModelCustomer> modelCustomers;
 
     private static final Logger logger = Logger.getLogger(StartAppServiceImpl.class.getName());
 
@@ -35,10 +35,10 @@ public class StartAppServiceImpl implements StartAppService{
         customerManager.createTable();
         productManager.createTable();
         productDetailsPerCustomer.createReport();
-        citroenCustomer.createModelReport();
-        citroenCustomer.createModelYoungCustomerReport();
-        renaultCustomer.createModelReport();
-        renaultCustomer.createModelYoungCustomerReport();
+        for (ModelCustomer modelCustomer : modelCustomers) {
+            modelCustomer.createModelReport();
+            modelCustomer.createModelYoungCustomerReport();
+        }
     }
 
 }
