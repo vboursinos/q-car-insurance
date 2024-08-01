@@ -20,7 +20,7 @@ public class CustomerManagerImpl implements CustomerManager{
     private static final Dotenv dotenv = Dotenv.load();
     private static final String kdbHost = dotenv.get("KDB_HOST");
     private static final String kdbPort = dotenv.get("KDB_PORT");
-    private static final String SCRIPT_PATH = "src/main/resources/scripts/createCustomerTable.q";
+    private static final String SCRIPT_PATH = "q/createCustomerTable.q";
 
 
     public void createTable() {

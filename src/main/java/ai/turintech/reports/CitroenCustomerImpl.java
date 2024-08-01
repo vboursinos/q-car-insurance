@@ -20,9 +20,9 @@ public class CitroenCustomerImpl implements CitroenCustomer {
     private static final Dotenv dotenv = Dotenv.load();
     private static final String kdbHost = dotenv.get("KDB_HOST");
     private static final String kdbPort = dotenv.get("KDB_PORT");
-    private static final String CUSTOMERS_SCRIPT_PATH = "src/main/resources/scripts/citroenCustomers.q";
-    private static final String YOUNG_CUSTOMERS_SCRIPT_PATH = "src/main/resources/scripts/youngCitroenCustomers.q";
-    private static final String AVG_PRICE_SCRIPT_PATH = "src/main/resources/scripts/averagePricePerCountryCitroen.q";
+    private static final String CUSTOMERS_SCRIPT_PATH = "q/citroenCustomers.q";
+    private static final String YOUNG_CUSTOMERS_SCRIPT_PATH = "q/youngCitroenCustomers.q";
+    private static final String AVG_PRICE_SCRIPT_PATH = "q/averagePricePerCountryCitroen.q";
 
     public void createModelReport() {
         try {

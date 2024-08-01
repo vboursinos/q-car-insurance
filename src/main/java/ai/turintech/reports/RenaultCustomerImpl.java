@@ -20,9 +20,8 @@ public class RenaultCustomerImpl implements RenaultCustomer {
     private static final Dotenv dotenv = Dotenv.load();
     private static final String kdbHost = dotenv.get("KDB_HOST");
     private static final String kdbPort = dotenv.get("KDB_PORT");
-    private static final String CUSTOMERS_SCRIPT_PATH = "src/main/resources/scripts/renaultCustomers.q";
-    private static final String YOUNG_CUSTOMERS_SCRIPT_PATH = "src/main/resources/scripts/youngRenaultCustomers.q";
-
+    private static final String CUSTOMERS_SCRIPT_PATH = "q/renaultCustomers.q";
+    private static final String YOUNG_CUSTOMERS_SCRIPT_PATH = "q/youngRenaultCustomers.q";
     public void createModelReport() {
         try {
             String qScript = new String(Files.readAllBytes(Paths.get(CUSTOMERS_SCRIPT_PATH)));

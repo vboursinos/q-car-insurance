@@ -20,7 +20,7 @@ public class ProductManagerImpl implements ProductManager{
     private static final Dotenv dotenv = Dotenv.load();
     private static final String kdbHost = dotenv.get("KDB_HOST");
     private static final String kdbPort = dotenv.get("KDB_PORT");
-    private static final String SCRIPT_PATH = "src/main/resources/scripts/createProductTable.q";
+    private static final String SCRIPT_PATH = "q/createProductTable.q";
 
 
     public void createTable() {
