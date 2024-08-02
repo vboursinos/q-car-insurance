@@ -1,150 +1,259 @@
-table name: city
+file: q/createProductTable.q
+table name: customers
 
 columns:
-id | city | country | pop | local_time | continent | region | avgTemperature
-
+id | name | surname | country | age | localTime | tel_num | region | product_id
 data:
-1	Istanbul	Turkey	15067724	07:00	Asia	Marmara	15.0
-2	Moscow	Russia	12615279	12:00	Europe	Central	20.0
-3	London	UK	9126366	07:00	Europe	Southeast	11.0
-4	StPetersburg	Russia	5383890	12:00	Europe	Northwest	2.0
-5	Berlin	Germany	3750000	09:00	Europe	Northeast	1.5
-6	Madrid	Spain	3256000	10:00	Europe	Central	16.0
-7	Rome	Italy	2800000	10:00	Europe	South	15.5
-8	Athens	Greece	3100000	11:00	Europe	Central	18.0
-9	Lisbon	Portugal	300000	11:00	Europe	LisbonRegion	17.0
+1  Nick    Down    Russia   66  10:00     0785323433 Central   6549
+2  Bob     Edwards Spain    40  11:00     0785323433 Central   5789
+3  Antony  Edwards Greece   66  12:00     0783334255 Central   1233
+4  George  Edwards Greece   32  09:00     0784567584 Central   5789
+5  Antony  Dickson Turkey   25  12:00     0783472111 Central   6549
+6  George  Toby    Russia   40  11:00     0785323433 Northwest 3261
+7  Antony  Cornell Greece   32  09:00     0783472111 Central   4564
+8  Nick    Down    Turkey   32  12:00     0783334256 Northeast 6584
+9  Antony  Gordon  Turkey   40  12:00     0784739287 Southeast 5789
+10 Antony  Black   UK       25  09:00     0784739287 Central   4564
 -----------------------------------------------------------------------------------
 
-table name: country
+file: q/createProductTable.q
+table name: product
 
 columns:
-id | capital | currency
+product_id | constructor | price | engine_size
 
 data:
-1	Istanbul	Lira
-2	Moscow	Ruble
-3	London	Pound
-4	StPetersburg	Ruble
-5	Berlin	Euro
-6	Madrid	Euro
-7	Rome	Euro
-8	Athens	Euro
-9	Lisbon	Euro
------------------------------------------------------------------------------------
-
-table name: person
-
-columns:
-id | first_name | last_name | sales | saleId | age
-
-data:
-1	John	Smith	300.25	1	30
-2	Bill	Johnson	400.75	2	35
-3	Karen	Williams	250.5	3	40
-4	Jill	Jones	600.0	4	45
-5	Frank	Brown	870.99	5	50
-6	Laura	Davis	450.0	6	55
-7	Henry	Miller	560.35	7	60
-8	Liam	Wilson	789.0	8	65
-9	Emma	Moore	650.85	9	70
-10	Noah	Taylor	900.5	10	75
+1111       Ford        10000  1
+1112       VW          20000  1.2
+1211       Audi        30000  1.4
+1212       BMW         40000  1.6
+1237       Toyota      50000  1.8
+4564       Nissan      60000  2
+5789       Honda       70000  2.2
+8321       Mazda       80000  2.4
+6549       Hyundai     90000  2.6
+9887       Kia         100000 2.8
+6584       Renault     110000 3
+3261       Peugeot     120000 3.2
+1233       Citroen     130000 3.4
 
 -----------------------------------------------------------------------------------
 
-table name: sale
+file: q/productDetailsPerCustomer.q
+table name: product_details_per_customer
 
 columns:
-id | sale_date | sale_amount
+id | name | surname | country | age | localTime | tel_num | region | product_id | constructor | price | engine_size
 
 data:
-1	2021-01-01	300.25
-2	2021-01-02	400.75
-3	2021-01-03	250.5
-4	2021-01-04	600.0
-5	2021-01-05	870.99
-6	2021-01-06	450.0
-7	2021-01-07	560.35
-8	2021-01-08	789.0
-9	2021-01-09	650.85
-10	2021-01-10	900.5
+1	Nick	Toby	Turkey	25	11:00	0784434256	Central	3261	Peugeot	120000	3.2
+2	Andrew	Down	Portugal	25	10:00	0783334356	Northeast	6549	Hyundai	90000	2.6
+3	Bob	Down	Turkey	54	09:00	0783472111	South	1237	Toyota	50000	1.8
+4	Paul	Cornell	UK	21	12:00	0784434256	Central	8321	Mazda	80000	2.4
+5	Paul	Rose	Spain	25	11:00	0784567584	Central	3261	Peugeot	120000	3.2
+6	Maria	Dickson	Spain	41	07:00	0783334255	Central	5789	Honda	70000	2.2
+7	Maria	Cornell	Germany	21	12:00	0783334356	South	5789	Honda	70000	2.2
+8	George	Edwards	UK	32	12:00	0783472111	Northeast	1233	Citroen	130000	3.4
+9	Paul	Down	Portugal	54	11:00	0783334256	Central	8321	Mazda	80000	2.4
+10	Bob	Brown	Spain	41	07:00	0784739287	Southeast	9887	Kia	100000	2.8
 
 -----------------------------------------------------------------------------------
 
-table name: stock
+file: q/citroenCustomers.q
+table name: citroen_customers
 
 columns:
-sym | sector | employees
+id | name | surname | country | age | localTime | tel_num | region | product_id | constructor | price | engine_size | product_id_2 | constructor_2 | price_2 | engine_size_2 | additional_column_1 | additional_column_2 | additional_column_3
 
 data:
+3	Antony	Edwards	Greece	66	12:00	0783334255	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+16	Nick	Rose	UK	25	12:00	0783334251	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+21	Will	Edwards	Italy	25	11:00	0783334256	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+25	Maria	Dickson	Italy	40	10:00	0783334255	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+35	Nick	Brown	Turkey	58	07:00	0783334255	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+75	Paul	Edwards	Greece	23	12:00	0784739287	South	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+79	Antony	Cornell	Russia	41	12:00	0783334251	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+80	Andrew	Gordon	Greece	40	11:00	0783334251	Northwest	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+89	Matthew	Dickson	Turkey	54	07:00	0783334356	Northeast	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+118	George	Rose	Portugal	21	07:00	0783334251	Northwest	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
 
-AAPL	Tech	72800
-C	Financial	262000
-FB	Tech	4331
-MS	Financial	57726
+-----------------------------------------------------------------------------------
+
+file: q/renaultCustomers.q
+table name: renault_customers
+
+columns:
+id | name | surname | country | age | localTime | tel_num | region | product_id | constructor | price | engine_size
+
+data:
+36	Paul	Black	Portugal	25	12:00	0783334256	Northeast	6584	Renault	110000	3.0
+42	Matthew	Brown	Italy	58	09:00	0784739287	South	6584	Renault	110000	3.0
+50	Antony	Down	UK	32	10:00	0784567584	Northwest	6584	Renault	110000	3.0
+68	Antony	Rose	Spain	21	09:00	0783334255	South	6584	Renault	110000	3.0
+71	Will	Toby	Germany	54	10:00	0783472111	Southeast	6584	Renault	110000	3.0
+78	Matthew	Brown	Russia	32	12:00	0783472111	Northwest	6584	Renault	110000	3.0
+94	Bob	Rose	UK	32	11:00	0783334356	South	6584	Renault	110000	3.0
+107	Antony	Brown	Spain	41	12:00	0784567584	Northeast	6584	Renault	110000	3.0
+108	Bob	Rose	Turkey	54	11:00	0783472111	South	6584	Renault	110000	3.0
+115	Antony	Brown	Germany	32	12:00	0784567584	Northwest	6584	Renault	110000	3.0
+117	George	Brown	Russia	41	07:00	0783334255	Northwest	6584	Renault	110000	3.0
 
 
 -----------------------------------------------------------------------------------
 
-table name: trade
+file: q/youngCitroenCustomers.q
+table name: young_citroen_customers
 
 columns:
-dt | sym | price | size
+id | name | surname | country | age | localTime | tel_num | region | product_id | constructor | price | engine_size | product_id_2 | constructor_2 | price_2 | engine_size_2 | additional_column_1 | additional_column_2 | additional_column_3
 
 data:
 
-2015-01-01	C	10.0	10
-2015-01-02	C	10.5	100
-2015-01-03	MS	260.0	15
-2015-01-04	C	11.0	200
-2015-01-04	DBK	35.6	55
-2015-01-05	AAPL	1010.0	20
-2015-01-06	AAPL	1020.0	300
-2015-01-07	MS	255.0	200
-2015-01-07	MS	254.0	400
+id	name	surname	country	age	localTime	tel_num	region	product_id	constructor	price	engine_size	product_id2	constructor2	price2	engine_size2	additional_column1	additional_column2	additional_column3
+13	George	Toby	Turkey	21	09:00	0783334251	Northwest	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+40	Antony	Toby	Greece	25	09:00	0783334356	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+46	Will	Down	Russia	25	10:00	0784739287	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+104	Bob	Brown	Russia	21	12:00	0783334255	Northeast	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+107	George	Gordon	Greece	23	11:00	0784567584	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+122	Nick	Down	Italy	21	12:00	0783334251	South	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+128	Antony	Brown	Italy	23	09:00	0784567584	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+141	Bob	Edwards	Spain	21	10:00	0783334356	South	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+146	Andrew	Gordon	Germany	25	10:00	0783472111	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+151	Maria	Toby	Spain	23	12:00	0785323433	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+154	Nick	Brown	Portugal	21	12:00	0783334251	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+223	Andrew	Edwards	Turkey	21	11:00	0784739287	Northwest	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+265	Will	Down	Italy	25	12:00	0784434256	Northwest	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+312	Matthew	Brown	Spain	25	07:00	0783334251	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+315	George	Toby	Russia	25	09:00	0783334255	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
+329	Will	Edwards	Germany	25	12:00	0783334356	Central	1233	BMW	40000	1.6	1233	Citroen	130000	3.4	130000.0	3.4	260000.0
 
 -----------------------------------------------------------------------------------
 
-file: src/main/resources/q/query_1.q
-table name: city_details
+file: q/youngRenaultCustomers.q
+table name: young_renault_customers
 
 columns:
-id | city | country | pop | local_time | continent | region | avgTemperature | city | currency
+id | name | surname | country | age | localTime | tel_num | region | product_id | constructor | price | engine_size
 
 data:
-1 Istanbul Turkey 15067924 07:00 Asia Marmara 15.0 15068024 Istanbul Lira
-2 Moscow Russia 12615479 12:00 Europe Central 20.0 12615579 Moscow Ruble
-3 London UK 9126566 07:00 Europe Southeast 11.0 9126666 London Pound
-4 StPetersburg Russia 5384090 12:00 Europe Northwest 2.0 5384190 StPetersburg Ruble
+11	Andrew	Rose	Italy	21	09:00	0783334255	Southeast	6584	Renault	110000	3.0
+140	Andrew	Gordon	Italy	23	12:00	0783334255	Southeast	6584	Renault	110000	3.0
+158	Bob	Gordon	Germany	21	10:00	0783334256	Central	6584	Renault	110000	3.0
+159	Andrew	Gordon	UK	25	07:00	0783334256	Central	6584	Renault	110000	3.0
+170	Antony	Toby	Italy	21	11:00	0784739287	Southeast	6584	Renault	110000	3.0
+224	Maria	Dickson	Greece	21	10:00	0784434256	South	6584	Renault	110000	3.0
+231	Nick	Cornell	Germany	25	12:00	0783334356	Central	6584	Renault	110000	3.0
+236	Paul	Edwards	Italy	23	11:00	0784739287	Northwest	6584	Renault	110000	3.0
+263	Antony	Down	Russia	25	11:00	0784434256	Northwest	6584	Renault	110000	3.0
+271	George	Gordon	Germany	21	10:00	0783472111	Southeast	6584	Renault	110000	3.0
+287	Paul	Cornell	Russia	25	07:00	0784434256	Northwest	6584	Renault	110000	3.0
 
 -----------------------------------------------------------------------------------
 
-file: src/main/resources/q/query_2.q
-table name: sales_per_person
+file: q/averagePricePerCountryCitroen.q
+table name: complicated_avg_price_by_country
 
 columns:
-id | first_name | last_name | sales | saleId | age | sale_date | sale_amount
+country | adjusted_price
 
 data:
-7 Henry Miller 560.35 7 60 2021-01-07 560.35 33621.0
-8 Liam Wilson 789.0 8 65 2021-01-08 789.0 51285.0
-9 Emma Moore 650.85 9 70 2021-01-09 650.85 45559.5
-10 Noah Taylor 900.5 10 75 2021-01-10 900.5 67537.5
-17 Henry Miller 560.35 7 60 2021-01-10 900.5 33621.0
-18 Liam Wilson 789.0 8 65 2021-01-10 900.5 51285.0
-19 Emma Moore 650.85 9 70 2021-01-10 900.5 45559.5
+Germany  76000
+Greece   80000
+Italy    76000
+Portugal 40000
+Russia   48000
+Spain    76000
+Turkey   36000
+UK       84000
 
 -----------------------------------------------------------------------------------
 
-file: src/main/resources/q/query_3.q
-table name: fbTrades
+file: showCustomerDetails.q
+table name: uk_customers
 
 columns:
-dt | sym | size | book
+id | name | surname | country | age | localTime | tel_num | region | product_id
 
-2015-01-02 FB 1000 A
-2015-01-03 FB 1000 B
-2015-01-05 FB 1000 A
-2015-01-02 FB 1000 A
-2015-01-03 FB 1000 B
+data:
+16  Matthew Dickson UK      66  10:00     0783334356 Northwest 8321
+20  Paul    Brown   UK      32  07:00     0784739287 South     1237
+29  Andrew  Down    UK      32  07:00     0783334251 Northeast 6584
+31  George  Cornell UK      66  11:00     0783334256 Northwest 8321
+44  Antony  Edwards UK      23  10:00     0783334356 Northeast 8321
+68  Antony  Down    UK      32  10:00     0783472111 South     4564
+73  Antony  Down    UK      32  07:00     0783334256 Central   4564
+78  Matthew Down    UK      25  07:00     0784434256 Central   5789
+79  Will    Toby    UK      41  07:00     0785323433 Central   6584
+80  Will    Edwards UK      40  10:00     0783334251 Central   9887
+84  Antony  Brown   UK      32  09:00     0783472111 South     5789
+94  Nick    Gordon  UK      58  09:00     0784567584 Southeast 6584
+
+-----------------------------------------------------------------------------------
+
+file: showCustomerDetails.q
+table name: greek_customers
+
+columns:
+id | name | surname | country | age | localTime | tel_num | region | product_id
+
+data:
+3   Andrew  Down    Greece  21  09:00     0783334251 Central   9887
+19  Paul    Edwards Greece  25  07:00     0783472111 Northwest 1237
+28  Maria   Down    Greece  32  09:00     0784434256 Central   9887
+30  Will    Down    Greece  32  12:00     0784434256 Southeast 5789
+34  Maria   Brown   Greece  40  09:00     0784739287 Southeast 4564
+35  Andrew  Brown   Greece  25  07:00     0783334356 Southeast 5789
+36  George  Black   Greece  40  07:00     0785323433 Central   6584
+40  Antony  Toby    Greece  25  09:00     0783334356 Central   1233
+48  Antony  Black   Greece  41  10:00     0783472111 Southeast 5789
+49  George  Down    Greece  66  11:00     0784567584 Central   1237
+53  Antony  Rose    Greece  32  12:00     0784567584 Central   1237
+58  Andrew  Rose    Greece  40  10:00     0784739287 Northeast 1233
+59  Andrew  Gordon  Greece  66  07:00     0783334251 Central   6584
+
+-----------------------------------------------------------------------------------
+
+file: showCustomerDetails.q
+table name: uk_customers_with_prices
+
+columns:
+id | name | surname | country | age | localTime | tel_num | region | product_id | constructor | price | engine_size
+
+data:
+16	Matthew	Dickson	UK	66	10:00	0783334356	Northwest	8321	Mazda	80000	2.4
+20	Paul	Brown	UK	32	07:00	0784739287	South	1237	Toyota	50000	1.8
+29	Andrew	Down	UK	32	07:00	0783334251	Northeast	6584	Renault	110000	3.0
+31	George	Cornell	UK	66	11:00	0783334256	Northwest	8321	Mazda	80000	2.4
+44	Antony	Edwards	UK	23	10:00	0783334356	Northeast	8321	Mazda	80000	2.4
+68	Antony	Down	UK	32	10:00	0783472111	South	4564	Nissan	60000	2.0
+73	Antony	Down	UK	32	07:00	0783334256	Central	4564	Nissan	60000	2.0
+78	Matthew	Down	UK	25	07:00	0784434256	Central	5789	Honda	70000	2.2
+79	Will	Toby	UK	41	07:00	0785323433	Central	6584	Renault	110000	3.0
+80	Will	Edwards	UK	40	10:00	0783334251	Central	9887	Kia	100000	2.8
+84	Antony	Brown	UK	32	09:00	0783472111	South	5789	Honda	70000	2.2
+94	Nick	Gordon	UK	58	09:00	0784567584	Southeast	6584	Renault	110000	3.0
+108	George	Down	UK	25	07:00	0783334356	Northwest	9887	Kia	100000	2.8
+
+-----------------------------------------------------------------------------------
+
+file: showCustomerDetails.q
+table name: greek_customers_with_prices
+
+columns:
+id | name | surname | country | age | localTime | tel_num | region | product_id | constructor | price | engine_size
+
+data:
+3	Andrew	Down	Greece	21	09:00	0783334251	Central	9887	Kia	100000	2.8
+19	Paul	Edwards	Greece	25	07:00	0783472111	Northwest	1237	Toyota	50000	1.8
+28	Maria	Down	Greece	32	09:00	0784434256	Central	9887	Kia	100000	2.8
+30	Will	Down	Greece	32	12:00	0784434256	Southeast	5789	Honda	70000	2.2
+34	Maria	Brown	Greece	40	09:00	0784739287	Southeast	4564	Nissan	60000	2.0
+35	Andrew	Brown	Greece	25	07:00	0783334356	Southeast	5789	Honda	70000	2.2
+36	George	Black	Greece	40	07:00	0785323433	Central	6584	Renault	110000	3.0
+40	Antony	Toby	Greece	25	09:00	0783334356	Central	1233	Citroen	130000	3.4
+48	Antony	Black	Greece	41	10:00	0783472111	Southeast	5789	Honda	70000	2.2
+49	George	Down	Greece	66	11:00	0784567584	Central	1237	Toyota	50000	1.8
+53	Antony	Rose	Greece	32	12:00	0784567584	Central	1237	Toyota	50000	1.8
+58	Andrew	Rose	Greece	40	10:00	0784739287	Northeast	1233	Citroen	130000	3.4
 
 -----------------------------------------------------------------------------------
