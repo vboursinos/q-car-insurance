@@ -1,16 +1,16 @@
-#Set up Project
+# Set up Project
 
-###Compile
+### Compile
 ```
 mvn clean package
 ```
 
-###Run Test
+### Run Test
 ```
 mvn test
 ```
 
-###Run benchmark
+### Run benchmark
 ```
 java -jar target/q-car-insurance-1.0-SNAPSHOT.jar
 ```
