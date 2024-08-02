@@ -10,6 +10,30 @@
     <version>3.3.0</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
+  <name>Archetype - kdb-q-queries</name>
+  <url>http://maven.apache.org</url>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.kx</groupId>
+      <artifactId>javakdb</artifactId>
+      <version>2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.cdimascio</groupId>
+      <artifactId>dotenv-java</artifactId>
+      <version>2.2.0</version>
+    </dependency>
+  </dependencies>
+
   <build>
     <plugins>
       <plugin>
@@ -47,28 +71,4 @@
       </plugin>
     </plugins>
   </build>
-  <name>Archetype - kdb-q-queries</name>
-  <url>http://maven.apache.org</url>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.kx</groupId>
-      <artifactId>javakdb</artifactId>
-      <version>2.0</version>
-    </dependency>
-    <dependency>
-      <groupId>io.github.cdimascio</groupId>
-      <artifactId>dotenv-java</artifactId>
-      <version>2.2.0</version>
-    </dependency>
-  </dependencies>
-
 </project>

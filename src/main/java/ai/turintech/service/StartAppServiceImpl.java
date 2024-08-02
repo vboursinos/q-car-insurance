@@ -6,6 +6,8 @@ import ai.turintech.reports.ModelCustomer;
 import ai.turintech.reports.ProductDetailsPerCustomer;
 import java.util.List;
 import java.util.logging.Logger;
+
+import ai.turintech.reports.ReportSummary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,8 @@ public class StartAppServiceImpl implements StartAppService {
 
   @Autowired private List<ModelCustomer> modelCustomers;
 
+  @Autowired private ReportSummary reportSummary;
+
   private static final Logger logger = Logger.getLogger(StartAppServiceImpl.class.getName());
 
   public void startApp() {
@@ -32,5 +36,6 @@ public class StartAppServiceImpl implements StartAppService {
       modelCustomer.createModelYoungCustomerReport();
       modelCustomer.createModelAvgPriceReport();
     }
+    reportSummary.createReportSummary();
   }
 }
