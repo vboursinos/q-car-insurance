@@ -4,10 +4,9 @@ import ai.turintech.database.CustomerManager;
 import ai.turintech.database.ProductManager;
 import ai.turintech.reports.ModelCustomer;
 import ai.turintech.reports.ProductDetailsPerCustomer;
+import ai.turintech.reports.ReportSummary;
 import java.util.List;
 import java.util.logging.Logger;
-
-import ai.turintech.reports.ReportSummary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

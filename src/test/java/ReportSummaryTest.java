@@ -1,8 +1,8 @@
 import ai.turintech.executor.ScriptExecutor;
-import ai.turintech.reports.CitroenCustomer;
 import ai.turintech.reports.ReportSummary;
 import com.kx.c;
 import io.github.cdimascio.dotenv.Dotenv;
+import java.io.IOException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-
-import java.io.IOException;
 
 @ContextConfiguration(classes = TestConfig.class)
 @SpringBootTest
@@ -38,7 +36,8 @@ public class ReportSummaryTest {
   public void testCreateReportSummary() {
     reportSummary.createReportSummary();
     String greekCustomerQuery = "select from greek_customers";
-    Object greekResult = scriptExecutor.executeQScriptWithReturn(greekCustomerQuery, kdbHost, kdbPort);
+    Object greekResult =
+        scriptExecutor.executeQScriptWithReturn(greekCustomerQuery, kdbHost, kdbPort);
 
     Assertions.assertNotNull(greekResult);
     Assertions.assertTrue(greekResult instanceof c.Flip);
