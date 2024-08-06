@@ -24,7 +24,7 @@ productMultiplier: {
 insuranceCost: { baseCost * ageMultiplier x * productMultiplier y }
 
 // Calculate the insurance cost for each customer
-insurance_cost_per_customer: select customer_id: id, insurance_cost: insuranceCost[age; product] from product_details_per_customer
+insurance_cost_per_customer: select customer_id: id, insurance_cost: insuranceCost[age; constructor] from product_details_per_customer
 
 // Display the new table
 insurance_cost_per_customer
