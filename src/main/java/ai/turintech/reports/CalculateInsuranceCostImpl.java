@@ -1,7 +1,6 @@
-package ai.turintech.service;
+package ai.turintech.reports;
 
 import ai.turintech.executor.ScriptExecutor;
-import ai.turintech.reports.ReportSummaryImpl;
 import io.github.cdimascio.dotenv.Dotenv;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CalculateInsuranceCostServiceImpl implements CalculateInsuranceCostService {
+public class CalculateInsuranceCostImpl implements CalculateInsuranceCost {
 
   @Autowired private ScriptExecutor scriptExecutor;
 

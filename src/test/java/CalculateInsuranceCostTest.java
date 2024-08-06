@@ -1,5 +1,5 @@
 import ai.turintech.executor.ScriptExecutor;
-import ai.turintech.service.CalculateInsuranceCostService;
+import ai.turintech.reports.CalculateInsuranceCost;
 import com.kx.c;
 import io.github.cdimascio.dotenv.Dotenv;
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class CalculateInsuranceCostTest {
   private static String kdbHost;
   private static String kdbPort;
 
-  @Autowired private CalculateInsuranceCostService calculateInsuranceCostService;
+  @Autowired private CalculateInsuranceCost calculateInsuranceCost;
 
   @Autowired private ScriptExecutor scriptExecutor;
 
@@ -34,7 +34,7 @@ public class CalculateInsuranceCostTest {
 
   @Test
   public void testGetInsuranceCostPerCustomer() throws IOException {
-    calculateInsuranceCostService.getInsuranceCostPerCustomer();
+    calculateInsuranceCost.getInsuranceCostPerCustomer();
     String greekCustomerQuery = "select from insurance_cost_per_customer";
     Object greekResult =
         scriptExecutor.executeQScriptWithReturn(greekCustomerQuery, kdbHost, kdbPort);

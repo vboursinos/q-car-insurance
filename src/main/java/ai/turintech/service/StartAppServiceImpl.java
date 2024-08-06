@@ -2,6 +2,7 @@ package ai.turintech.service;
 
 import ai.turintech.database.CustomerManager;
 import ai.turintech.database.ProductManager;
+import ai.turintech.reports.CalculateInsuranceCost;
 import ai.turintech.reports.ModelCustomer;
 import ai.turintech.reports.ProductDetailsPerCustomer;
 import ai.turintech.reports.ReportSummary;
@@ -24,7 +25,7 @@ public class StartAppServiceImpl implements StartAppService {
 
   @Autowired private ReportSummary reportSummary;
 
-  @Autowired private CalculateInsuranceCostService calculateInsuranceCostService;
+  @Autowired private CalculateInsuranceCost calculateInsuranceCostService;
 
   private static final Logger logger = Logger.getLogger(StartAppServiceImpl.class.getName());
 

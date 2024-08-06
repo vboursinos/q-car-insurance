@@ -1,7 +1,7 @@
-package ai.turintech.service;
+package ai.turintech.reports;
 
 import java.io.IOException;
 
-public interface CalculateInsuranceCostService {
+public interface CalculateInsuranceCost {
   public void getInsuranceCostPerCustomer() throws IOException;
 }
