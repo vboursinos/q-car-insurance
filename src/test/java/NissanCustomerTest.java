@@ -1,5 +1,5 @@
 import ai.turintech.executor.ScriptExecutor;
-import ai.turintech.reports.NissanCustomer;
+import ai.turintech.reports.costructorReports.NissanCustomer;
 import com.kx.c;
 import io.github.cdimascio.dotenv.Dotenv;
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class NissanCustomerTest {
   private static String kdbHost;
   private static String kdbPort;
 
-  @Autowired private NissanCustomer bmwCustomer;
+  @Autowired private NissanCustomer nissanCustomer;
 
   @Autowired private ScriptExecutor scriptExecutor;
 
@@ -34,7 +34,7 @@ public class NissanCustomerTest {
 
   @Test
   public void testCreateModelReport() {
-    bmwCustomer.createModelReport();
+    nissanCustomer.createModelReport();
     String customerQuery = "select from nissan_customers";
     Object result = scriptExecutor.executeQScriptWithReturn(customerQuery, kdbHost, kdbPort);
 
@@ -48,7 +48,7 @@ public class NissanCustomerTest {
 
   @Test
   public void testCreateModelYoungCustomerReport() {
-    bmwCustomer.createModelYoungCustomerReport();
+    nissanCustomer.createModelYoungCustomerReport();
     String customerQuery = "select from young_nissan_customers";
     Object result = scriptExecutor.executeQScriptWithReturn(customerQuery, kdbHost, kdbPort);
 

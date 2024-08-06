@@ -1,37 +1,40 @@
-package ai.turintech.reports;
+package ai.turintech.reports.costructorReports;
 
 import ai.turintech.executor.ScriptExecutor;
 import com.kx.c;
 import io.github.cdimascio.dotenv.Dotenv;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RenaultCustomerImpl implements RenaultCustomer {
+public class KiaCustomerImpl implements KiaCustomer {
 
   @Autowired private ScriptExecutor scriptExecutor;
-  private static final Logger logger = Logger.getLogger(RenaultCustomerImpl.class.getName());
+  private static final Logger logger = Logger.getLogger(KiaCustomerImpl.class.getName());
   private static final Dotenv dotenv = Dotenv.load();
   private static final String kdbHost = dotenv.get("KDB_HOST");
   private static final String kdbPort = dotenv.get("KDB_PORT");
-  private static final String CUSTOMERS_SCRIPT_PATH = "q/renaultCustomers.q";
-  private static final String YOUNG_CUSTOMERS_SCRIPT_PATH = "q/youngRenaultCustomers.q";
+
+  private String getKiaCustomers() {
+    return "kia_customers: select from (customers lj `product_id xkey product) where constructor = `Kia";
+  }
+
+  private String getYoungKiaCustomers() {
+    return "young_kia_customers: select from (customers lj `product_id xkey product) where constructor = `Kia, age < 30";
+  }
 
   public void createModelReport() {
     try {
-      String qScript = new String(Files.readAllBytes(Paths.get(CUSTOMERS_SCRIPT_PATH)));
+      String qScript = getKiaCustomers();
       scriptExecutor.executeQScript(qScript, kdbHost, kdbPort);
       Object result =
-          scriptExecutor.executeQScriptWithReturn(
-              "select from renault_customers", kdbHost, kdbPort);
+          scriptExecutor.executeQScriptWithReturn("select from kia_customers", kdbHost, kdbPort);
       if (result instanceof c.Flip) {
         c.Flip table = (c.Flip) result;
         String[] columnNames = table.x;
-        logger.info("Printing renault data...");
+        logger.info("Printing kia data...");
         for (String columnName : columnNames) {
           logger.info(columnName);
         }
@@ -39,7 +42,7 @@ public class RenaultCustomerImpl implements RenaultCustomer {
         long[] ids = (long[]) columns[0];
         Object[] names = (Object[]) columns[1];
         Object[] surnames = (Object[]) columns[2];
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
           int id = (int) ids[i];
           String name = names[i].toString();
           String surname = surnames[i].toString();
@@ -48,7 +51,7 @@ public class RenaultCustomerImpl implements RenaultCustomer {
           }
         }
       }
-      logger.info("Renault Customer table created successfully.");
+      logger.info("Kia Customer table created successfully.");
     } catch (Exception e) {
       logger.log(Level.SEVERE, "Failed to initialize the database", e);
     }
@@ -56,15 +59,15 @@ public class RenaultCustomerImpl implements RenaultCustomer {
 
   public void createModelYoungCustomerReport() {
     try {
-      String qScript = new String(Files.readAllBytes(Paths.get(YOUNG_CUSTOMERS_SCRIPT_PATH)));
+      String qScript = getYoungKiaCustomers();
       scriptExecutor.executeQScript(qScript, kdbHost, kdbPort);
       Object result =
           scriptExecutor.executeQScriptWithReturn(
-              "select from young_renault_customers", kdbHost, kdbPort);
+              "select from young_kia_customers", kdbHost, kdbPort);
       if (result instanceof c.Flip) {
         c.Flip table = (c.Flip) result;
         String[] columnNames = table.x;
-        logger.info("Printing young customer renault data...");
+        logger.info("Printing young customer Kia data...");
         for (String columnName : columnNames) {
           logger.info(columnName);
         }
@@ -82,7 +85,7 @@ public class RenaultCustomerImpl implements RenaultCustomer {
               String.format("ID: %d, Name: %s, Surname: %s, Age: %d", id, name, surname, age));
         }
       }
-      logger.info("Young Renault Customer table created successfully.");
+      logger.info("Young Kia Customer table created successfully.");
     } catch (Exception e) {
       logger.log(Level.SEVERE, "Failed to initialize the database", e);
     }

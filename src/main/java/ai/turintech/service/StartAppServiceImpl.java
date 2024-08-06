@@ -2,9 +2,11 @@ package ai.turintech.service;
 
 import ai.turintech.database.CustomerManager;
 import ai.turintech.database.ProductManager;
-import ai.turintech.reports.ModelCustomer;
+import ai.turintech.reports.CalculateInsuranceCost;
 import ai.turintech.reports.ProductDetailsPerCustomer;
 import ai.turintech.reports.ReportSummary;
+import ai.turintech.reports.costructorReports.ModelCustomer;
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,11 @@ public class StartAppServiceImpl implements StartAppService {
 
   @Autowired private ReportSummary reportSummary;
 
+  @Autowired private CalculateInsuranceCost calculateInsuranceCostService;
+
   private static final Logger logger = Logger.getLogger(StartAppServiceImpl.class.getName());
 
-  public void startApp() {
+  public void startApp() throws IOException {
     logger.info("Starting the application");
     customerManager.createTable();
     productManager.createTable();
@@ -36,5 +40,6 @@ public class StartAppServiceImpl implements StartAppService {
       modelCustomer.createModelAvgPriceReport();
     }
     reportSummary.createReportSummary();
+    calculateInsuranceCostService.getInsuranceCostPerCustomer();
   }
 }

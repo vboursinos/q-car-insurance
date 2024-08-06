@@ -1,5 +1,5 @@
 import ai.turintech.executor.ScriptExecutor;
-import ai.turintech.reports.costructorReports.RenaultCustomer;
+import ai.turintech.reports.CalculateInsuranceCost;
 import com.kx.c;
 import io.github.cdimascio.dotenv.Dotenv;
 import java.io.IOException;
@@ -13,12 +13,12 @@ import org.springframework.test.context.ContextConfiguration;
 
 @ContextConfiguration(classes = TestConfig.class)
 @SpringBootTest
-public class RenaultCustomerTest {
+public class CalculateInsuranceCostTest {
   private static c con = null;
   private static String kdbHost;
   private static String kdbPort;
 
-  @Autowired private RenaultCustomer renaultCustomer;
+  @Autowired private CalculateInsuranceCost calculateInsuranceCost;
 
   @Autowired private ScriptExecutor scriptExecutor;
 
@@ -33,31 +33,18 @@ public class RenaultCustomerTest {
   }
 
   @Test
-  public void testCreateModelReport() {
-    renaultCustomer.createModelReport();
-    String customerQuery = "select from renault_customers";
-    Object result = scriptExecutor.executeQScriptWithReturn(customerQuery, kdbHost, kdbPort);
+  public void testGetInsuranceCostPerCustomer() throws IOException {
+    calculateInsuranceCost.getInsuranceCostPerCustomer();
+    String greekCustomerQuery = "select from insurance_cost_per_customer";
+    Object greekResult =
+        scriptExecutor.executeQScriptWithReturn(greekCustomerQuery, kdbHost, kdbPort);
 
-    Assertions.assertNotNull(result);
-    Assertions.assertTrue(result instanceof c.Flip);
+    Assertions.assertNotNull(greekResult);
+    Assertions.assertTrue(greekResult instanceof c.Flip);
 
-    c.Flip table = (c.Flip) result;
-    String[] columnNames = table.x;
-    Assertions.assertEquals(12, columnNames.length);
-  }
-
-  @Test
-  public void testCreateModelYoungCustomerReport() {
-    renaultCustomer.createModelYoungCustomerReport();
-    String customerQuery = "select from young_renault_customers";
-    Object result = scriptExecutor.executeQScriptWithReturn(customerQuery, kdbHost, kdbPort);
-
-    Assertions.assertNotNull(result);
-    Assertions.assertTrue(result instanceof c.Flip);
-
-    c.Flip table = (c.Flip) result;
-    String[] columnNames = table.x;
-    Assertions.assertEquals(12, columnNames.length);
+    c.Flip greekCustomerTable = (c.Flip) greekResult;
+    String[] columnNames = greekCustomerTable.x;
+    Assertions.assertEquals(2, columnNames.length);
   }
 
   @AfterAll

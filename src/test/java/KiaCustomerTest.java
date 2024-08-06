@@ -1,5 +1,5 @@
 import ai.turintech.executor.ScriptExecutor;
-import ai.turintech.reports.costructorReports.RenaultCustomer;
+import ai.turintech.reports.costructorReports.KiaCustomer;
 import com.kx.c;
 import io.github.cdimascio.dotenv.Dotenv;
 import java.io.IOException;
@@ -13,12 +13,12 @@ import org.springframework.test.context.ContextConfiguration;
 
 @ContextConfiguration(classes = TestConfig.class)
 @SpringBootTest
-public class RenaultCustomerTest {
+public class KiaCustomerTest {
   private static c con = null;
   private static String kdbHost;
   private static String kdbPort;
 
-  @Autowired private RenaultCustomer renaultCustomer;
+  @Autowired private KiaCustomer kiaCustomer;
 
   @Autowired private ScriptExecutor scriptExecutor;
 
@@ -34,8 +34,8 @@ public class RenaultCustomerTest {
 
   @Test
   public void testCreateModelReport() {
-    renaultCustomer.createModelReport();
-    String customerQuery = "select from renault_customers";
+    kiaCustomer.createModelReport();
+    String customerQuery = "select from nissan_customers";
     Object result = scriptExecutor.executeQScriptWithReturn(customerQuery, kdbHost, kdbPort);
 
     Assertions.assertNotNull(result);
@@ -48,8 +48,8 @@ public class RenaultCustomerTest {
 
   @Test
   public void testCreateModelYoungCustomerReport() {
-    renaultCustomer.createModelYoungCustomerReport();
-    String customerQuery = "select from young_renault_customers";
+    kiaCustomer.createModelYoungCustomerReport();
+    String customerQuery = "select from young_nissan_customers";
     Object result = scriptExecutor.executeQScriptWithReturn(customerQuery, kdbHost, kdbPort);
 
     Assertions.assertNotNull(result);
