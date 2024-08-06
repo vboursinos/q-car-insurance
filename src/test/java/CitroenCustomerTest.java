@@ -1,5 +1,5 @@
 import ai.turintech.executor.ScriptExecutor;
-import ai.turintech.reports.CitroenCustomer;
+import ai.turintech.reports.costructorReports.CitroenCustomer;
 import com.kx.c;
 import io.github.cdimascio.dotenv.Dotenv;
 import java.io.IOException;
