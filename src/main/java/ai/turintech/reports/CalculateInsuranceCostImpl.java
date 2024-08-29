@@ -1,6 +1,7 @@
 package ai.turintech.reports;
 
 import ai.turintech.executor.ScriptExecutor;
+import com.kx.c;
 import io.github.cdimascio.dotenv.Dotenv;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,5 +28,21 @@ public class CalculateInsuranceCostImpl implements CalculateInsuranceCost {
     Object insuranceCost =
         scriptExecutor.executeQScriptWithReturn(
             "select from insurance_cost_per_customer", kdbHost, kdbPort);
+    if (insuranceCost instanceof c.Flip) {
+      c.Flip table = (c.Flip) insuranceCost;
+      String[] columnNames = table.x;
+      logger.info("Printing kia data...");
+      for (String columnName : columnNames) {
+        logger.info(columnName);
+      }
+      Object[] columns = table.y;
+      long[] ids = (long[]) columns[0];
+      double[] costs = (double[]) columns[1];
+      for (int i = 0; i < 10; i++) {
+        int id = (int) ids[i];
+        double cost = costs[i];
+        logger.info(String.format("ID: %d, insurance cost: %s", id, cost));
+      }
+    }
   }
 }
