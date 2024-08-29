@@ -1,6 +1,5 @@
 baseCost:300
 
-/ageMultiplier:{$[x<30;2.0;x<40;1.8;x<50;1.7;1.4]}
 ageMultiplier:{
     result:2.0;
     do[1000; // Unnecessary loop
@@ -8,7 +7,7 @@ ageMultiplier:{
       ];
     result
  }
-/constructorMultiplier:{$[x~"Citroen";1.1;x~"Renault";1.05;x~"Kia";0.95;x~"Nissan";1.5;1.0]}
+
 constructorMultiplier:{
     c:raze 10#enlist x; // Unnecessary string repetition
     $[c like "*Citroen*";1.1;
@@ -19,16 +18,7 @@ constructorMultiplier:{
  }
 
 
-/insuranceCost:{[a;c] baseCost*ageMultiplier[a]*constructorMultiplier[c]}
-insuranceCost:{[a;c]
-    cost:0;
-    do[100; // Unnecessary loop
-       ageMult:ageMultiplier[a];
-       constrMult:constructorMultiplier[c];
-       cost:baseCost*ageMult*constrMult
-      ];
-    cost
- }
+insuranceCost:{[a;c] baseCost*ageMultiplier[a]*constructorMultiplier[c]}
 
 // Test ageMultiplier
 ageMultiplier each 25 35 45 55
