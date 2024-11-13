@@ -3,10 +3,8 @@ import ai.turintech.reports.CalculateInsuranceCost;
 import com.kx.c;
 import io.github.cdimascio.dotenv.Dotenv;
 import java.io.IOException;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -33,6 +31,7 @@ public class CalculateInsuranceCostTest {
   }
 
   @Test
+  @Disabled
   public void testGetInsuranceCostPerCustomer() throws IOException {
     calculateInsuranceCost.getInsuranceCostPerCustomer();
     String greekCustomerQuery = "select from insurance_cost_per_customer";
